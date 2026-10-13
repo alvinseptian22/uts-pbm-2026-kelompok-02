@@ -1,4 +1,4 @@
-<img width="2880" height="1704" alt="image" src="https://github.com/user-attachments/assets/46996da8-b09d-453b-961a-df2dbe990135" /># uts-pbm-2026-kelompok-08
+# uts-pbm-2026-kelompok-08
 Kelompok 8: Kasir Laundry Kiloan
 
 Nama Anggota:

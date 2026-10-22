@@ -15,7 +15,7 @@ fun FormulirLaundry(
     ) -> Unit
 ) {
     var nama by remember { mutableStateOf("") }
-    var hp by remember { mutableStateOf("") }
+    var noHP by remember { mutableStateOf("") }
     var beratText by remember { mutableStateOf("") }
     var layanan by remember { mutableStateOf("Reguler") }
     var pewangi by remember { mutableStateOf(false) }
@@ -36,8 +36,8 @@ fun FormulirLaundry(
         )
 
         OutlinedTextField(
-            value = hp,
-            onValueChange = { hp = it },
+            value = noHP,
+            onValueChange = { noHP = it },
             label = { Text("Nomor HP") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
@@ -46,7 +46,7 @@ fun FormulirLaundry(
         OutlinedTextField(
             value = beratText,
             onValueChange = { beratText = it },
-            label = { Text("Berat cucian (kg)") },
+            label = { Text("Berat Cucian (kg)") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
@@ -107,7 +107,7 @@ fun FormulirLaundry(
                     Text(
                         if (berat != null && validasiBerat(berat))
                             "${maxOf(berat, 2.0)} kg"
-                        else "—"
+                        else "0"
                     )
                 }
 
@@ -132,7 +132,7 @@ fun FormulirLaundry(
                 )
 
                 Text(
-                    "Minimum berat 2 kg. Diskon Rp5.000 untuk subtotal minimal Rp50.000.",
+                    "Minimum berat 2 kg. Untuk subtotal minimal Rp50.000, mendapat diskon Rp5.000.",
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -150,7 +150,7 @@ fun FormulirLaundry(
                 pesanError = when {
                     nama.isBlank() ->
                         "Nama pelanggan wajib diisi."
-                    !validasiNomorHp(hp.trim()) ->
+                    !validasiNomorHp(noHP.trim()) ->
                         "Nomor HP harus diawali 08 dan terdiri dari 10–13 angka."
                     berat == null || !validasiBerat(berat) ->
                         "Berat harus lebih dari 0 dan maksimal 100 kg."
@@ -160,14 +160,14 @@ fun FormulirLaundry(
                 if (pesanError.isEmpty()) {
                     onTambahPesanan(
                         nama.trim(),
-                        hp.trim(),
+                        noHP.trim(),
                         berat!!,
                         layanan,
                         pewangi
                     )
 
                     nama = ""
-                    hp = ""
+                    noHP = ""
                     beratText = ""
                     layanan = "Reguler"
                     pewangi = false

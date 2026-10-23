@@ -62,7 +62,7 @@ fun jumlahBelumSelesai(
 fun totalBerat(
     daftar: List<PesananLaundry>
 ): Double {
-    return daftar.sumOf { it.berat }
+    return daftar.sumOf { it.Berat }
 }
 
 fun pendapatanSelesai(

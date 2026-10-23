@@ -1,12 +1,12 @@
 package com.example.laundry
 
 data class PesananLaundry(
-    val id: Long,
-    val namaPelanggan: String,
-    val nomorHp: String,
-    val berat: Double,
-    val layanan: String,
-    val pewangiPremium: Boolean,
+    val idPesanan: Long,
+    val NamaPelanggan: String,
+    val NomorHp: String,
+    val Berat: Double,
+    val Layanan: String,
+    val PewangiPremium: Boolean,
     val total: Int,
     val lamaPengerjaan: Int,
     val selesai: Boolean = false

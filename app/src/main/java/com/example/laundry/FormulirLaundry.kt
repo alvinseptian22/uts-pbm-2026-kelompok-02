@@ -16,12 +16,12 @@ fun FormulirLaundry(
 ) {
     var nama by remember { mutableStateOf("") }
     var noHP by remember { mutableStateOf("") }
-    var beratText by remember { mutableStateOf("") }
+    var BeratInput by remember { mutableStateOf("") }
     var layanan by remember { mutableStateOf("Reguler") }
     var pewangi by remember { mutableStateOf(false) }
     var pesanError by remember { mutableStateOf("") }
 
-    val berat = beratText.replace(",", ".").toDoubleOrNull()
+    val berat = BeratInput.replace(",", ".").toDoubleOrNull()
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -44,8 +44,8 @@ fun FormulirLaundry(
         )
 
         OutlinedTextField(
-            value = beratText,
-            onValueChange = { beratText = it },
+            value = BeratInput,
+            onValueChange = { BeratInput = it },
             label = { Text("Berat Cucian (kg)") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
@@ -168,7 +168,7 @@ fun FormulirLaundry(
 
                     nama = ""
                     noHP = ""
-                    beratText = ""
+                    BeratInput = ""
                     layanan = "Reguler"
                     pewangi = false
                 }

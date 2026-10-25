@@ -618,7 +618,7 @@ private fun KartuRingkasan(
 ) {
     Card(
         modifier = modifier,
-        shape = MaterialTheme.shapes.large
+        shape = MaterialTheme.shapes.medium
     ) {
         Column(
             modifier = Modifier.padding(16.dp),

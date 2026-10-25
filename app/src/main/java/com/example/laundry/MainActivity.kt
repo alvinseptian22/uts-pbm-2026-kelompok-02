@@ -139,7 +139,7 @@ fun LayarKasirLaundry() {
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.large,
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer
             )
         ) {
             Column(modifier = Modifier.padding(16.dp)) {

@@ -81,7 +81,7 @@ fun LayarKasirLaundry() {
             )
         ) {
             Column(
-                modifier = Modifier.padding(22.dp),
+                modifier = Modifier.padding(24.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 Image(

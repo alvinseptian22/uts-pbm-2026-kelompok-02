@@ -88,14 +88,14 @@ fun LayarKasirLaundry() {
                 )
 
                 Text(
-                    text = "Kasir Laundry",
+                    text = "Kasir Laundry Kiloan",
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
 
                 Text(
-                    text = "Kelompok 8 • UTS PBM",
+                    text = "Kelompok 2 • UTS PBM",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimary
                 )

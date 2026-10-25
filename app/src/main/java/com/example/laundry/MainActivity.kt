@@ -1,4 +1,3 @@
-
 package com.example.laundry
 
 import android.os.Bundle
@@ -10,7 +9,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -50,8 +48,8 @@ fun LayarKasirLaundry() {
 
     val berat = beratText.replace(",", ".").toDoubleOrNull()
 
-    val total = if (berat != null && berat > 0.0 &&
-        berat <= 100.0
+    val total = if (
+        berat != null && validasiBerat(berat)
     ) {
         hitungTotal(berat, layanan, pewangi)
     } else {
@@ -71,7 +69,6 @@ fun LayarKasirLaundry() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-
         // HEADER APLIKASI
         Card(
             modifier = Modifier.fillMaxWidth(),
@@ -136,9 +133,7 @@ fun LayarKasirLaundry() {
                 containerColor = MaterialTheme.colorScheme.secondaryContainer
             )
         ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
+            Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = "Pendapatan pesanan selesai",
                     style = MaterialTheme.typography.bodyMedium
@@ -211,10 +206,12 @@ fun LayarKasirLaundry() {
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(
-                    containerColor = if (layanan == pilihan.first)
-                        MaterialTheme.colorScheme.secondaryContainer
-                    else
-                        MaterialTheme.colorScheme.surface
+                    containerColor =
+                        if (layanan == pilihan.first) {
+                            MaterialTheme.colorScheme.secondaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.surface
+                        }
                 ),
                 onClick = { layanan = pilihan.first }
             ) {
@@ -238,6 +235,7 @@ fun LayarKasirLaundry() {
                             text = pilihan.first,
                             fontWeight = FontWeight.SemiBold
                         )
+
                         Text(
                             text = "${pilihan.second} • ${pilihan.third}",
                             style = MaterialTheme.typography.bodySmall,
@@ -268,6 +266,7 @@ fun LayarKasirLaundry() {
                         text = "Pewangi Premium",
                         fontWeight = FontWeight.SemiBold
                     )
+
                     Text(
                         text = "Tambahan Rp1.000/kg",
                         style = MaterialTheme.typography.bodySmall
@@ -298,11 +297,13 @@ fun LayarKasirLaundry() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text("Berat cucian")
+
                     Text(
-                        if (berat != null && berat > 0.0)
-                            "${maxOf(berat, 2.0)} kg"
-                        else
+                        if (berat != null && validasiBerat(berat)) {
+                            "${beratTagihan(berat)} kg"
+                        } else {
                             "—"
+                        }
                     )
                 }
 
@@ -337,7 +338,7 @@ fun LayarKasirLaundry() {
                     nama.isBlank() ->
                         "Nama pelanggan wajib diisi."
 
-                    !validasiNomorHp(hp) ->
+                    !validasiNomorHp(hp.trim()) ->
                         "Nomor HP harus diawali 08 dan terdiri dari 10–13 angka."
 
                     berat == null || !validasiBerat(berat) ->
@@ -345,12 +346,12 @@ fun LayarKasirLaundry() {
 
                     else -> {
                         val pesananBaru = PesananLaundry(
-                            id = System.currentTimeMillis(),
-                            namaPelanggan = nama.trim(),
-                            nomorHp = hp.trim(),
-                            berat = berat,
-                            layanan = layanan,
-                            pewangiPremium = pewangi,
+                            idPesanan = System.currentTimeMillis(),
+                            NamaPelanggan = nama.trim(),
+                            NomorHp = hp.trim().toInt(),
+                            Berat = berat,
+                            Layanan = layanan,
+                            PewangiPremium = pewangi,
                             total = total,
                             lamaPengerjaan = lamaPengerjaan(layanan)
                         )
@@ -381,10 +382,11 @@ fun LayarKasirLaundry() {
         if (pesan.isNotEmpty()) {
             Text(
                 text = pesan,
-                color = if (pesan.startsWith("Pesanan berhasil"))
+                color = if (pesan.startsWith("Pesanan berhasil")) {
                     MaterialTheme.colorScheme.primary
-                else
-                    MaterialTheme.colorScheme.error,
+                } else {
+                    MaterialTheme.colorScheme.error
+                },
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -456,13 +458,13 @@ fun LayarKasirLaundry() {
                                 verticalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
                                 Text(
-                                    text = item.namaPelanggan,
+                                    text = item.NamaPelanggan,
                                     style = MaterialTheme.typography.titleLarge,
                                     fontWeight = FontWeight.Bold
                                 )
 
                                 Text(
-                                    text = item.nomorHp,
+                                    text = item.NomorHp.toString(),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -489,15 +491,15 @@ fun LayarKasirLaundry() {
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            KolomDetail("Berat", "${item.berat} kg")
-                            KolomDetail("Layanan", item.layanan)
+                            KolomDetail("Berat", "${item.Berat} kg")
+                            KolomDetail("Layanan", item.Layanan)
                             KolomDetail(
                                 "Durasi",
                                 "${item.lamaPengerjaan} hari"
                             )
                         }
 
-                        if (item.pewangiPremium) {
+                        if (item.PewangiPremium) {
                             Text(
                                 text = "✓ Pewangi Premium",
                                 style = MaterialTheme.typography.bodySmall,
@@ -520,7 +522,7 @@ fun LayarKasirLaundry() {
                         Button(
                             onClick = {
                                 val index = daftarPesanan.indexOfFirst {
-                                    it.id == item.id
+                                    it.idPesanan == item.idPesanan
                                 }
 
                                 if (index >= 0) {
@@ -530,7 +532,8 @@ fun LayarKasirLaundry() {
                                         )
                                 }
 
-                                pesan = "Pesanan ${item.namaPelanggan} selesai."
+                                pesan =
+                                    "Pesanan ${item.NamaPelanggan} selesai."
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -567,11 +570,12 @@ fun LayarKasirLaundry() {
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = item.namaPelanggan,
+                                text = item.NamaPelanggan,
                                 fontWeight = FontWeight.SemiBold
                             )
+
                             Text(
-                                text = "${item.layanan} • ${item.berat} kg",
+                                text = "${item.Layanan} • ${item.Berat} kg",
                                 style = MaterialTheme.typography.bodySmall
                             )
                         }
@@ -581,6 +585,7 @@ fun LayarKasirLaundry() {
                                 text = "Rp${"%,d".format(item.total)}",
                                 fontWeight = FontWeight.Bold
                             )
+
                             Text(
                                 text = "Selesai ✓",
                                 style = MaterialTheme.typography.labelSmall,

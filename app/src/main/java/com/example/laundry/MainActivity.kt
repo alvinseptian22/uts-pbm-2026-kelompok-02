@@ -76,6 +76,7 @@ fun LayarKasirLaundry() {
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         // HEADER APLIKASI
+
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.extraLarge,
@@ -83,34 +84,42 @@ fun LayarKasirLaundry() {
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) {
-            Column(
-                modifier = Modifier.padding(24.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_laundry),
                     contentDescription = "Logo Laundry",
-                    modifier = Modifier.size(56.dp)
+                    modifier = Modifier.size(72.dp)
                 )
 
-                Text(
-                    text = "LAUNDRY KILOAN",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(
+                        text = "LAUNDRY KILOAN",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
 
-                Text(
-                    text = stringResource(R.string.judul_header),
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
+                    Text(
+                        text = stringResource(R.string.judul_header),
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
 
-                Text(
-                    text = stringResource(R.string.info_kelompok),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
+                    Text(
+                        text = stringResource(R.string.info_kelompok),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
             }
         }
 

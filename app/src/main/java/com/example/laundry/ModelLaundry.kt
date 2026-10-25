@@ -3,7 +3,7 @@ package com.example.laundry
 data class PesananLaundry(
     val idPesanan: Long,
     val NamaPelanggan: String,
-    val NomorHp: Int,
+    val NomorHp: String,
     val Berat: Double,
     val Layanan: String,
     val PewangiPremium: Boolean,

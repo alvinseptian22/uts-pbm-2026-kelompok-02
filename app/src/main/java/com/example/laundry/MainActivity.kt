@@ -18,9 +18,12 @@ import com.example.laundry.ui.theme.LaundryTheme
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -357,7 +360,7 @@ fun LayarKasirLaundry() {
                         val pesananBaru = PesananLaundry(
                             idPesanan = System.currentTimeMillis(),
                             NamaPelanggan = nama.trim(),
-                            NomorHp = hp.trim().toInt(),
+                            NomorHp = hp.trim(),
                             Berat = berat,
                             Layanan = layanan,
                             PewangiPremium = pewangi,
@@ -473,7 +476,7 @@ fun LayarKasirLaundry() {
                                 )
 
                                 Text(
-                                    text = item.NomorHp.toString(),
+                                    text = item.NomorHp,
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )

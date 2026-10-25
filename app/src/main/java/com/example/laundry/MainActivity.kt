@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.laundry.ui.theme.LaundryTheme
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,14 +89,14 @@ fun LayarKasirLaundry() {
                 )
 
                 Text(
-                    text = "Kasir Laundry Kiloan",
+                    text = stringResource(R.string.judul_header),
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
 
                 Text(
-                    text = "Kelompok 2 • UTS PBM",
+                    text = stringResource(R.string.info_kelompok),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimary
                 )

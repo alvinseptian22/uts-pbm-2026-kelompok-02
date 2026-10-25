@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Laundry</string>
+
+    <string name="judul_header">Kasir Laundry Kiloan</string>
+    <string name="label_brand">LAUNDRY KILOAN</string>
+    <string name="info_kelompok">Kelompok 2 • UTS PBM</string>
 </resources>

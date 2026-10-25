@@ -1,5 +1,5 @@
-# uts-pbm-2026-kelompok-08
-Kelompok 8: Kasir Laundry Kiloan
+# uts-pbm-2026-kelompok-02
+Kelompok 2: Kasir Laundry Kiloan
 
 Nama Anggota:
 1. Muhammad Alvin Septian (2305903040003)

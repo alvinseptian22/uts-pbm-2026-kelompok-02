@@ -16,6 +16,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.laundry.ui.theme.LaundryTheme
 import androidx.compose.ui.res.stringResource
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +84,12 @@ fun LayarKasirLaundry() {
                 modifier = Modifier.padding(22.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_laundry),
+                    contentDescription = "Logo Laundry",
+                    modifier = Modifier.size(56.dp)
+                )
+
                 Text(
                     text = "LAUNDRY KILOAN",
                     style = MaterialTheme.typography.labelLarge,

@@ -45,7 +45,10 @@ Identitas Kelompok
 
 
 <img src="ic_laundry.png" alt="Tampilan aplikasi kasir laundry" width="300">
-
+<img src="23.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
+<img src="233.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
+<img src="2333.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
+<img src="23333.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
 
 ## Video Youtube
 

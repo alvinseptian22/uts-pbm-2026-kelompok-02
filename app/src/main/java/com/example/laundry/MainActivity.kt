@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.compose.ui.platform.LocalContext
 
 
 class MainActivity : ComponentActivity() {
@@ -48,8 +49,12 @@ fun LayarKasirLaundry() {
     var pewangi by remember { mutableStateOf(false) }
     var pesan by remember { mutableStateOf("") }
 
+    val context = LocalContext.current
+
     val daftarPesanan = remember {
-        mutableStateListOf<PesananLaundry>()
+        mutableStateListOf<PesananLaundry>().apply {
+            addAll(muatDaftarPesanan(context))
+        }
     }
 
     val berat = beratText.replace(",", ".").toDoubleOrNull()
@@ -378,6 +383,7 @@ fun LayarKasirLaundry() {
                         )
 
                         daftarPesanan.add(pesananBaru)
+                        simpanDaftarPesanan(context, daftarPesanan.toList())
 
                         nama = ""
                         hp = ""
@@ -551,6 +557,7 @@ fun LayarKasirLaundry() {
                                         daftarPesanan[index].copy(
                                             selesai = true
                                         )
+                                    simpanDaftarPesanan(context, daftarPesanan.toList())
                                 }
 
                                 pesan =

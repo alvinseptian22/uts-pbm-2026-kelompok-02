@@ -43,7 +43,7 @@ Identitas Kelompok
 
 ## Tampilan Aplikasi
 
-Tambahkan screenshot aplikasi di sini.
+![Tampilan aplikasi kasir laundry](ic_laundry.png).
 
 ## Video Youtube
 

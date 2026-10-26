@@ -43,7 +43,9 @@ Identitas Kelompok
 
 ## Tampilan Aplikasi
 
-![Tampilan aplikasi kasir laundry](ic_laundry.png).
+
+<img src="ic_laundry.png" alt="Tampilan aplikasi kasir laundry" width="300">
+
 
 ## Video Youtube
 

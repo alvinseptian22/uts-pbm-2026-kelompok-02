@@ -42,22 +42,32 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LayarKasirLaundry() {
+
     var nama by remember { mutableStateOf("") }
     var hp by remember { mutableStateOf("") }
     var beratText by remember { mutableStateOf("") }
+    var namaDisentuh by remember { mutableStateOf(false) }
+    var hpDisentuh by remember { mutableStateOf(false) }
+    var beratDisentuh by remember { mutableStateOf(false) }
     var layanan by remember { mutableStateOf("Reguler") }
     var pewangi by remember { mutableStateOf(false) }
     var pesan by remember { mutableStateOf("") }
 
     val context = LocalContext.current
 
-    val daftarPesanan = remember {
-        mutableStateListOf<PesananLaundry>().apply {
-            addAll(muatDaftarPesanan(context))
-        }
+    var daftarPesanan by remember {
+        mutableStateOf(muatDaftarPesanan(context))
     }
 
     val berat = beratText.replace(",", ".").toDoubleOrNull()
+
+
+    val namaValid = nama.isNotBlank()
+    val hpValid = validasiNomorHp(hp.trim())
+    val beratValid = berat != null && validasiBerat(berat)
+
+    val formValid = namaValid && hpValid && beratValid
+
 
     val total = if (
         berat != null && validasiBerat(berat)
@@ -78,7 +88,7 @@ fun LayarKasirLaundry() {
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // HEADER APLIKASI
 
@@ -89,41 +99,48 @@ fun LayarKasirLaundry() {
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) {
-            Row(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    .padding(16.dp),
+                contentAlignment = Alignment.CenterStart
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_laundry),
-                    contentDescription = "Logo Laundry",
-                    modifier = Modifier.size(72.dp)
-                )
-
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Text(
-                        text = "LAUNDRY KILOAN",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onPrimary
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_laundry),
+                        contentDescription = "Logo Laundry",
+                        modifier = Modifier.size(72.dp)
                     )
 
-                    Text(
-                        text = stringResource(R.string.judul_header),
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.label_brand),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
 
-                    Text(
-                        text = stringResource(R.string.info_kelompok),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
+                        Text(
+                            text = stringResource(R.string.judul_header),
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+
+                        Text(
+                            text = stringResource(R.string.info_kelompok),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
                 }
             }
         }
@@ -137,7 +154,7 @@ fun LayarKasirLaundry() {
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             KartuRingkasan(
                 judul = "Pesanan Aktif",
@@ -182,37 +199,66 @@ fun LayarKasirLaundry() {
             fontWeight = FontWeight.Bold
         )
 
+
         OutlinedTextField(
             value = nama,
-            onValueChange = { nama = it },
+            onValueChange = {
+                nama = it
+                namaDisentuh = true
+            },
             label = { Text("Nama pelanggan") },
             placeholder = { Text("Masukkan nama pelanggan") },
             modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            singleLine = true,
+            isError = namaDisentuh && !namaValid,
+            supportingText = {
+                if (namaDisentuh && !namaValid) {
+                    Text("Nama pelanggan wajib diisi.")
+                }
+            }
         )
+
 
         OutlinedTextField(
             value = hp,
-            onValueChange = { hp = it },
+            onValueChange = {
+                hp = it
+                hpDisentuh = true
+            },
             label = { Text("Nomor HP") },
             placeholder = { Text("Contoh: 081234567890") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone
             ),
             modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            singleLine = true,
+            isError = hpDisentuh && !hpValid,
+            supportingText = {
+                if (hpDisentuh && !hpValid) {
+                    Text("Nomor harus diawali 08 dan terdiri dari 10–13 angka.")
+                }
+            }
         )
 
         OutlinedTextField(
             value = beratText,
-            onValueChange = { beratText = it },
+            onValueChange = {
+                beratText = it
+                beratDisentuh = true
+            },
             label = { Text("Berat cucian (kg)") },
             placeholder = { Text("Contoh: 3") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Decimal
             ),
             modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            singleLine = true,
+            isError = beratDisentuh && !beratValid,
+            supportingText = {
+                if (beratDisentuh && !beratValid) {
+                    Text("Berat harus lebih dari 0 dan maksimal 100 kg.")
+                }
+            }
         )
 
         Text(
@@ -244,7 +290,7 @@ fun LayarKasirLaundry() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
@@ -310,7 +356,7 @@ fun LayarKasirLaundry() {
             )
         ) {
             Column(
-                modifier = Modifier.padding(18.dp),
+                modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
@@ -382,8 +428,8 @@ fun LayarKasirLaundry() {
                             lamaPengerjaan = lamaPengerjaan(layanan)
                         )
 
-                        daftarPesanan.add(pesananBaru)
-                        simpanDaftarPesanan(context, daftarPesanan.toList())
+                        daftarPesanan = daftarPesanan + pesananBaru
+                        simpanDaftarPesanan(context, daftarPesanan)
 
                         nama = ""
                         hp = ""
@@ -391,13 +437,18 @@ fun LayarKasirLaundry() {
                         layanan = "Reguler"
                         pewangi = false
 
+                        namaDisentuh = false
+                        hpDisentuh = false
+                        beratDisentuh = false
+
                         "Pesanan berhasil disimpan!"
                     }
                 }
             },
+            enabled = formValid,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(54.dp),
+                .height(56.dp),
             shape = MaterialTheme.shapes.large
         ) {
             Text(
@@ -469,12 +520,12 @@ fun LayarKasirLaundry() {
                     modifier = Modifier.fillMaxWidth(),
                     shape = MaterialTheme.shapes.extraLarge,
                     elevation = CardDefaults.cardElevation(
-                        defaultElevation = 2.dp
+                        defaultElevation = 4.dp
                     )
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -504,8 +555,8 @@ fun LayarKasirLaundry() {
                                 Text(
                                     text = "Diproses",
                                     modifier = Modifier.padding(
-                                        horizontal = 10.dp,
-                                        vertical = 6.dp
+                                        horizontal = 12.dp,
+                                        vertical = 8.dp
                                     ),
                                     style = MaterialTheme.typography.labelMedium
                                 )
@@ -548,20 +599,17 @@ fun LayarKasirLaundry() {
 
                         Button(
                             onClick = {
-                                val index = daftarPesanan.indexOfFirst {
-                                    it.idPesanan == item.idPesanan
+                                daftarPesanan = daftarPesanan.map { pesanan ->
+                                    if (pesanan.idPesanan == item.idPesanan) {
+                                        pesanan.copy(selesai = true)
+                                    } else {
+                                        pesanan
+                                    }
                                 }
 
-                                if (index >= 0) {
-                                    daftarPesanan[index] =
-                                        daftarPesanan[index].copy(
-                                            selesai = true
-                                        )
-                                    simpanDaftarPesanan(context, daftarPesanan.toList())
-                                }
+                                simpanDaftarPesanan(context, daftarPesanan)
 
-                                pesan =
-                                    "Pesanan ${item.NamaPelanggan} selesai."
+                                pesan = "Pesanan ${item.NamaPelanggan} selesai."
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -570,12 +618,33 @@ fun LayarKasirLaundry() {
                         ) {
                             Text("✓  Tandai Selesai")
                         }
+
+                        Button(
+                            onClick = {
+                                daftarPesanan = daftarPesanan.filterNot {
+                                    it.idPesanan == item.idPesanan
+                                }
+
+                                simpanDaftarPesanan(context, daftarPesanan)
+
+                                pesan = "Pesanan ${item.NamaPelanggan} berhasil dihapus."
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(48.dp),
+                            shape = MaterialTheme.shapes.large,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.error
+                            )
+                        ) {
+                            Text("Hapus Pesanan")
+                        }
                     }
                 }
             }
         }
 
-        // RIWAYAT SINGKAT
+                        // RIWAYAT SINGKAT
         if (jumlahSelesai > 0) {
             HorizontalDivider()
 
@@ -593,7 +662,7 @@ fun LayarKasirLaundry() {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(14.dp),
+                            .padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
@@ -608,6 +677,7 @@ fun LayarKasirLaundry() {
                             )
                         }
 
+
                         Column(horizontalAlignment = Alignment.End) {
                             Text(
                                 text = "Rp${"%,d".format(item.total)}",
@@ -619,6 +689,29 @@ fun LayarKasirLaundry() {
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.primary
                             )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            Button(
+                                onClick = {
+                                    daftarPesanan = daftarPesanan.filterNot {
+                                        it.idPesanan == item.idPesanan
+                                    }
+
+                                    simpanDaftarPesanan(context, daftarPesanan)
+
+                                    pesan = "Riwayat ${item.NamaPelanggan} berhasil dihapus."
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.error
+                                ),
+                                contentPadding = PaddingValues(
+                                    horizontal = 12.dp,
+                                    vertical = 4.dp
+                                )
+                            ) {
+                                Text("Hapus Riwayat")
+                            }
                         }
                     }
                 }

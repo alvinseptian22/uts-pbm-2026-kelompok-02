@@ -1,7 +1,87 @@
+
 <resources>
     <string name="app_name">Laundry</string>
 
+    <!-- Header -->
     <string name="judul_header">Kasir Laundry Kiloan</string>
     <string name="label_brand">LAUNDRY KILOAN</string>
     <string name="info_kelompok">Kelompok 2 • UTS PBM</string>
+    <string name="deskripsi_logo_laundry">Logo Laundry</string>
+
+    <!-- Ringkasan -->
+    <string name="ringkasan">Ringkasan</string>
+    <string name="pesanan_aktif">Pesanan Aktif</string>
+    <string name="sudah_selesai">Sudah Selesai</string>
+    <string name="pendapatan_selesai">Pendapatan pesanan selesai</string>
+
+    <!-- Formulir -->
+    <string name="buat_pesanan_baru">Buat Pesanan Baru</string>
+    <string name="nama_pelanggan">Nama pelanggan</string>
+    <string name="masukkan_nama">Masukkan nama pelanggan</string>
+    <string name="nomor_hp">Nomor HP</string>
+    <string name="contoh_nomor_hp">Contoh: 081234567890</string>
+    <string name="berat_cucian">Berat cucian (kg)</string>
+    <string name="contoh_berat">Contoh: 3</string>
+    <string name="pilih_layanan">Pilih Layanan</string>
+    <string name="reguler">Reguler</string>
+    <string name="kilat">Kilat</string>
+    <string name="setrika_saja">Setrika saja</string>
+    <string name="durasi_reguler">3 hari</string>
+    <string name="durasi_kilat">1 hari</string>
+    <string name="durasi_setrika">2 hari</string>
+    <string name="tarif_reguler">Rp6.000/kg</string>
+    <string name="tarif_kilat">Rp10.000/kg</string>
+    <string name="tarif_setrika">Rp4.000/kg</string>
+    <string name="pewangi_premium">Pewangi Premium</string>
+    <string name="tambahan_pewangi">Tambahan Rp1.000/kg</string>
+    <string name="format_rupiah">Rp%1$s</string>
+
+    <!-- Tagihan -->
+    <string name="estimasi_tagihan">Estimasi Tagihan</string>
+    <string name="lama_pengerjaan">Lama pengerjaan</string>
+    <string name="minimum_berat_diskon">Minimum berat 2 kg. Diskon Rp5.000 untuk subtotal minimal Rp50.000.</string>
+    <string name="belum_tersedia">—</string>
+
+    <!-- Validasi -->
+    <string name="nama_wajib">Nama pelanggan wajib diisi.</string>
+    <string name="nomor_hp_tidak_valid">Nomor harus diawali 08 dan terdiri dari 10–13 angka.</string>
+    <string name="berat_tidak_valid">Berat harus lebih dari 0 dan maksimal 100 kg.</string>
+
+    <!-- Tombol dan pesan -->
+    <string name="simpan_pesanan">＋ Simpan Pesanan</string>
+    <string name="pesanan_berhasil">Pesanan berhasil disimpan!</string>
+    <string name="tandai_selesai">✓ Tandai Selesai</string>
+    <string name="hapus_pesanan">Hapus Pesanan</string>
+    <string name="hapus_riwayat">Hapus Riwayat</string>
+    <string name="pesanan_dihapus">Pesanan %1$s berhasil dihapus.</string>
+    <string name="riwayat_dihapus">Riwayat %1$s berhasil dihapus.</string>
+    <string name="pesanan_selesai">Pesanan %1$s selesai.</string>
+
+    <!-- Daftar pesanan -->
+    <string name="daftar_pesanan_aktif">Pesanan Aktif (%1$d)</string>
+    <string name="deskripsi_pesanan_aktif">Pesanan yang belum selesai ditampilkan di bawah ini.</string>
+    <string name="semua_pesanan_beres">Semua pesanan beres!</string>
+    <string name="pesanan_baru_muncul">Pesanan baru akan muncul di sini.</string>
+    <string name="status_diproses">Diproses</string>
+    <string name="status_selesai">Selesai ✓</string>
+    <string name="riwayat_selesai">Riwayat Selesai (%1$d)</string>
+    <string name="detail_berat">Berat</string>
+    <string name="detail_layanan">Layanan</string>
+    <string name="detail_durasi">Durasi</string>
+    <string name="total_tagihan">Total Tagihan</string>
+    <string name="label_berat">Berat</string>
+    <string name="label_layanan">Layanan</string>
+    <string name="label_durasi">Durasi</string>
+    <string name="pewangi_aktif">✓ Pewangi Premium</string>
+    <string name="format_durasi">%1$d hari</string>
+    <string name="simbol_centang">✓</string>
+    <string name="format_berat_kg">%.1f kg</string>
+    <string name="format_layanan_berat">%1$s • %2$.1f kg</string>
+    <string name="format_layanan_harga">%1$s • Rp %2$d/kg</string>
+    <string name="format_riwayat_dihapus">Riwayat pesanan %1$s berhasil dihapus.</string>
+    <string name="label_status_selesai">Selesai</string>
+    <string name="label_status_diproses">Sedang diproses</string>
+    <string name="label_pewangi_premium">Pewangi premium</string>
+    <string name="label_total">Total</string>
+    <string name="label_estimasi">Estimasi biaya</string>
 </resources>

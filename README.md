@@ -43,12 +43,28 @@ Identitas Kelompok
 
 ## Tampilan Aplikasi
 
-
-<img src="ic_laundry.png" alt="Tampilan aplikasi kasir laundry" width="300">
-<img src="23.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
-<img src="233.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
-<img src="2333.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
-<img src="23333.jpeg" alt="Tampilan aplikasi kasir laundry" width="300">
+<table>
+  <tr>
+    <td align="center">
+      <img src="ic_laundry.png" alt="Logo laundry" width="200">
+    </td>
+    <td align="center">
+      <img src="23.jpeg" alt="Tampilan aplikasi 1" width="200">
+    </td>
+    <td align="center">
+      <img src="233.jpeg" alt="Tampilan aplikasi 2" width="200">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="2333.jpeg" alt="Tampilan aplikasi 3" width="200">
+    </td>
+    <td align="center">
+      <img src="23333.jpeg" alt="Tampilan aplikasi 4" width="200">
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ## Video Youtube
 

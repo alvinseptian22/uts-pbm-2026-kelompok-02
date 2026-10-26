@@ -69,13 +69,11 @@ fun LayarKasirLaundry() {
 
     val berat = beratText.replace(",", ".").toDoubleOrNull()
 
-
     val namaValid = nama.isNotBlank()
     val hpValid = validasiNomorHp(hp.trim())
     val beratValid = berat != null && validasiBerat(berat)
 
     val formValid = namaValid && hpValid && beratValid
-
 
     val total = if (
         berat != null && validasiBerat(berat)
@@ -597,7 +595,7 @@ fun LayarKasirLaundry() {
             }
         }
 
-                        // RIWAYAT SINGKAT
+        // RIWAYAT SINGKAT
         if (jumlahSelesai > 0) {
             HorizontalDivider()
 
